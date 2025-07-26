@@ -1,0 +1,36 @@
+Project: ESP32 Bluetooth Controlled Car using Dabble Gamepad
+Requirements / Components
+1.	ESP32 Development Board (any version, e.g., ESP32 Devkit V1)
+2.	L298N Motor Driver Module (to control two DC motors)
+3.	Four DC Gear Motors with Wheels (2 motors for each side of the car)
+4.	Battery Pack (7.4V – 12V recommended, directly connected to L298N motor supply)
+5.	Jumper Wires and Breadboard (optional)
+6.	Chassis (Cardboard or acrylic)
+  
+L298N Pin	Function	ESP32 GPIO Pin
+ENA	Right Motor PWM	 D13
+IN1	Right Motor Dir          	D14
+IN2	Right Motor Dir	D27
+ENB	Left Motor PWM	D33
+IN3	Left Motor Dir	D26
+IN4	Left Motor Dir	D25
+  
+
+Power Connections:
+•	Connect L298N 12V pin to battery positive.
+•	Connect L298N GND pin to battery negative and also to ESP32 GND (common ground is mandatory).
+•	ESP32 VIN (5V) can be powered from a buck converter or USB.
+
+
+________________________________________
+Working Principle
+•	The code uses the Dabble app (Gamepad module) via Bluetooth to control the car wirelessly.
+•	Dabble.begin("ironman") sets the Bluetooth name as “ironman” (visible on your phone).
+•	Motor speed is controlled using PWM signals (0–255 duty cycle) on ENA and ENB pins.
+•	Direction control is done by toggling IN1/IN2 (right motor) and IN3/IN4 (left motor).
+•	Gamepad buttons work as:
+o	UP → Move forward
+o	DOWN → Move backward
+o	LEFT → Rotate left (right motor forward, left motor backward)
+o	RIGHT → Rotate right (right motor backward, left motor forward)
+
